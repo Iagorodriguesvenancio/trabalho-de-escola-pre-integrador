@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>teste de cadastros</title>
+</head>
+
+<body>
+    <input type="text" name="" id="nome"><br>
+    <input type="text" name="" id="email"><br>
+    <input type="text" name="" id="cpf"><br>
+    <input type="text" name="" id="senha"><br>
+    <input type="text" name="" id="endereco"><br>
+    <button onclick="cadastro()">cadastro</button>
+    <script>
+        async function cadastro() {
+            const resposta = await fetch("http://localhost:3000/cadastroUser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nome:document.querySelector("#nome").value,
+                    email:document.querySelector("#email").value,
+                    cpf:document.querySelector("#cpf").value,
+                    senha:document.querySelector("#senha").value,
+                    endereco:document.querySelector("#endereco").value
+                })
+            });
+
+             const resultado = await resposta.json();
+            alert(resultado);
+        }
+
+    </script>
+</body>
+
+</html>
